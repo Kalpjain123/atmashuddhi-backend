@@ -9,6 +9,6 @@
     "express": "^4.18.2",
     "mongoose": "^7.3.4",
     "cors": "^2.8.5",
-    "nodemailer": "^6.9.3"
+    "uuid": "^9.0.0"
   }
 }
