@@ -5,9 +5,13 @@ const cors = require('cors');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-mongoose.connect('your_mongodb_connection_string', {
+mongoose.connect('mongodb+srv://kalpjain1143:A6A1v0uXbAw3x6Gr@cluster0.od1glv7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch(err => {
+    console.error('Failed to connect to MongoDB', err);
 });
 
 app.use(cors());
