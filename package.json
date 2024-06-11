@@ -1,0 +1,14 @@
+{
+  "name": "atmashuddhi-backend",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.3.4",
+    "cors": "^2.8.5",
+    "nodemailer": "^6.9.3"
+  }
+}
