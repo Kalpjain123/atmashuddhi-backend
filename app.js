@@ -1,15 +1,14 @@
+// src/app.js
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
-const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Replace <password> with your actual password
-mongoose.connect('mongodb+srv://kalpjain1143:MEGHdarshansuri*@cluster0.od1glv7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+mongoose.connect('mongodb+srv://kalpjain1143:<password>@cluster0.od1glv7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
@@ -29,20 +28,21 @@ app.get('/', (req, res) => {
     res.send('Hello from Atmashuddhi Backend');
 });
 
-// Endpoint to handle chatbot queries
+// Endpoint to handle chatbot queries with keyword search
 app.post('/api/chatbot', (req, res) => {
     const { message } = req.body;
+    const lowercasedMessage = message.toLowerCase();
     const results = questions.filter(q =>
-        q.question.toLowerCase().includes(message.toLowerCase())
+        q.question.toLowerCase().includes(lowercasedMessage)
     );
     res.json(results);
 });
 
-// Endpoint to create a new token
+// Endpoint to create a new token with simple format
 app.post('/api/chatbot/ticket', (req, res) => {
     const { question } = req.body;
-    const token = uuidv4();
-    // Here you would normally save the token and question to a database
+    const token = Math.random().toString(36).substring(2, 8); // Simple 6-character token
+    // Normally save the token and question to a database
     res.json({ token, question });
 });
 
